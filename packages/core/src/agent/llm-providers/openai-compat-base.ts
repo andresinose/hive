@@ -388,15 +388,48 @@ export abstract class OpenAICompatBase implements LLMProvider {
 
 /**
  * Extracts tool_calls from text when the model fails to emit native tool_calls.
- * Supports common formats used by Gemma, Qwen, and other local models.
+ * Supports common formats used by Gemma, Qwen, DSML, and other local models.
  */
-function extractToolCallsFromText(
+export function extractToolCallsFromText(
   content: string,
   toolNameMap: Map<string, string>,
   knownToolNames?: Set<string>,
 ): { content: string; tool_calls: LLMToolCall[] } {
   const tool_calls: LLMToolCall[] = []
   let extractedContent = content
+
+  // 1. DSML Tool Call Extraction (< | | DSML | | calls> ... </ | | DSML | | calls>)
+  const dsmlCallsRegex = /<(?:\s*\|\s*)*DSML(?:\s*\|\s*)*calls>([\s\S]*?)<\/(?:\s*\|\s*)*DSML(?:\s*\|\s*)*calls>/gi
+  let dsmlMatch
+  while ((dsmlMatch = dsmlCallsRegex.exec(content)) !== null) {
+    const dsmlBody = dsmlMatch[1]
+    const invokeRegex = /<(?:\s*\|\s*)*DSML(?:\s*\|\s*)*invoke\s+name="([^"]+)">([\s\S]*?)<\/(?:\s*\|\s*)*DSML(?:\s*\|\s*)*invoke>/gi
+    let invMatch
+    while ((invMatch = invokeRegex.exec(dsmlBody)) !== null) {
+      const toolName = invMatch[1]
+      const invBody = invMatch[2]
+      const params: Record<string, unknown> = {}
+      const paramRegex = /<(?:\s*\|\s*)*DSML(?:\s*\|\s*)*parameter\s+name="([^"]+)"[^>]*>([\s\S]*?)<\/(?:\s*\|\s*)*DSML(?:\s*\|\s*)*parameter>/gi
+      let paramMatch
+      while ((paramMatch = paramRegex.exec(invBody)) !== null) {
+        const pName = paramMatch[1]
+        let pVal: unknown = paramMatch[2].trim()
+        if (pVal === "true") pVal = true
+        else if (pVal === "false") pVal = false
+        else if (!isNaN(Number(pVal)) && pVal !== "") pVal = Number(pVal)
+        params[pName] = pVal
+      }
+      tool_calls.push({
+        id: crypto.randomUUID(),
+        type: "function",
+        function: {
+          name: toolNameMap.get(toolName) ?? toolName,
+          arguments: JSON.stringify(params),
+        },
+      })
+    }
+    extractedContent = extractedContent.replace(dsmlMatch[0], "").trim()
+  }
 
   // Regexes for wrapped tool-call blocks.
   const regexes = [

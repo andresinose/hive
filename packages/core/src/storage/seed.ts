@@ -396,7 +396,9 @@ export const SEED_DATA: SeedData = {
     { id: "Qwen3.8-27B-UD-Q4_K_XL.gguf", providerId: "hiveagents", name: "Qwen3.8 27B Dense + MTP", modelType: "llm", contextWindow: 50000, capabilities: JSON.stringify(["chat", "streaming", "reasoning", "function_calling"]), inputPer1M: 0, outputPer1M: 0 },
     // Se carga por el primer shard: llama.cpp descubre los otros dos solo.
     // Sólo texto, y el más lento del inventario: ~91 s de carga y 12.8 t/s.
-    { id: "DeepSeek-V4-Flash-UD-IQ2_XXS-00001-of-00003.gguf", providerId: "hiveagents", name: "DeepSeek V4 Flash 90 GB (lento)", modelType: "llm", contextWindow: 32768, capabilities: JSON.stringify(["chat", "streaming", "reasoning", "function_calling"]), inputPer1M: 0, outputPer1M: 0 },
+    // ── Ollama Local ──
+    { id: "llama-3.2-3b-instruct", providerId: "ollama", name: "Llama 3.2 3B Instruct (Local)", modelType: "llm", contextWindow: 131072, capabilities: JSON.stringify(["chat", "code", "json_mode", "function_calling", "streaming"]), inputPer1M: 0, outputPer1M: 0 },
+    { id: "llama3.2:3b", providerId: "ollama", name: "Llama 3.2 3B (Ollama Tag)", modelType: "llm", contextWindow: 131072, capabilities: JSON.stringify(["chat", "code", "json_mode", "function_calling", "streaming"]), inputPer1M: 0, outputPer1M: 0 },
   ],
 
 

@@ -2,6 +2,8 @@ import { logger } from "../../utils/logger"
 import { sanitizeMessages, resolveMaxTokens, ensureArrayItems } from "./interface"
 import type { LLMCallOptions, LLMProvider, LLMResponse, LLMToolCall } from "./interface"
 import type { ContentPart, LLMMessage } from "../llm-client"
+import { OpenAIProvider } from "./openai"
+import { extractToolCallsFromText } from "./openai-compat-base"
 
 /**
  * Ollama reads only `num_ctx` tokens of a prompt and silently drops the rest,
@@ -169,6 +171,15 @@ export class OllamaProvider implements LLMProvider {
         if (part.eval_count !== undefined) evalCount = part.eval_count
       }
 
+      if (tool_calls.length === 0 && content && options.tools?.length) {
+        const toolNameMap = new Map<string, string>(options.tools.map(t => [t.function.name, t.function.name]))
+        const extracted = extractToolCallsFromText(content, toolNameMap)
+        if (extracted.tool_calls.length > 0) {
+          content = extracted.content
+          tool_calls.push(...extracted.tool_calls)
+        }
+      }
+
       return {
         content,
         reasoning_content: reasoning_content || undefined,
@@ -184,6 +195,19 @@ export class OllamaProvider implements LLMProvider {
       log.error(`[llm-client] Error details: ${error.message || error}`)
       if (options.numCtx) log.error(`[llm-client] Context requested: num_ctx=${options.numCtx}`)
       if (options.tools?.length) log.error(`[llm-client] Tools defined: ${options.tools.length}`)
+
+      // Fallback to OpenAI-compatible endpoint if /api/chat returns 404 (e.g. llama-server)
+      const errStr = String(error?.message || "") + JSON.stringify(error || {})
+      if (error.status === 404 || error.status_code === 404 || errStr.includes("404") || errStr.includes("File Not Found")) {
+        log.info(`[llm-client] Ollama /api/chat returned 404 — falling back to OpenAI format at ${host}/v1`)
+        const openaiProvider = new OpenAIProvider()
+        return openaiProvider.call({
+          ...options,
+          provider: "openai",
+          baseUrl: `${host.replace(/\/+$/, "")}/v1`,
+          apiKey: options.apiKey || "local",
+        })
+      }
 
       // If the model runner crashed (likely OOM) and tools were sent, retry without tools.
       // The model can still answer conversationally — tools will be unavailable this turn.
