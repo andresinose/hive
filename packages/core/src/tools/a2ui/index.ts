@@ -152,6 +152,7 @@ COMPONENT PROPS (nombres oficiales del spec):
   ChoicePicker: options [{label, value}], value: {path:"/..."}, variant ("mutuallyExclusive"|"multipleSelection"), displayStyle ("checkbox"|"chips"), filterable, action
     - value es DynamicStringList; two-way binding con value; action fires inmediatamente
   Slider: label, value: {path:"/..."}, min, max, step, action (fires on release)
+    - usar ÚNICAMENTE para entradas ajustables del usuario. Para MOSTRAR porcentajes o métricas estáticas, usa Card + Text (variant: "h2"/"h3") o Row.
   CheckBox: label, value: {path:"/..."} (DynamicBoolean, two-way binding)
   DateTimeInput: value: {path:"/..."}, enableDate, enableTime, min, max, label
   Tabs: tabs: [{title: "string plano", child: "id"}]  ← title es string, NO {literalString:...}
@@ -167,6 +168,7 @@ ACTION FORMAT (oficial: con wrapper event):
   {event: {name: "action_name", context: {key: {path: "/data/key"}}}}
 
 DATA BINDING: "prop": "literal" | {path: "/json/pointer"} | {call: "fn", args: {...}}
+  - IMPORTANTE: Para títulos, etiquetas y valores de métricas en dashboards, usa texto plano explícito (ej: "text": "12 modelos", "label": "Proveedor líder") o llama inmediatamente a a2ui_update_data_model para poblar los valores.
 
 Root component: usar id="root" explícito.`,
     parameters: {

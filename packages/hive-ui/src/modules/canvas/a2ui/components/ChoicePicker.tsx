@@ -9,7 +9,11 @@ export function A2UIChoicePicker({ def, ctx }: { def: ComponentDef; ctx: RenderC
   // spec: "value" (DynamicStringList) | ours: "selections" (alias)
   const currentSelections = resolveDynamicStringList((def.selections ?? def.value) as any, ctx.dataModel, ctx.scopeData);
   const [localSelections, setLocalSelections] = useState<string[]>(currentSelections);
-  const options = def.options ?? [];
+  const options = Array.isArray(def.options)
+    ? def.options
+    : (def.options && typeof def.options === "object"
+        ? Object.entries(def.options as Record<string, unknown>).map(([k, v]) => ({ label: String(v), value: k }))
+        : []);
 
   const toggle = (value: string) => {
     setLocalSelections((prev) => {

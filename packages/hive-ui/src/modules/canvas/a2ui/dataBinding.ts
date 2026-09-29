@@ -49,7 +49,14 @@ export function resolveDynamicString(
   formatters?: Record<string, (args: Record<string, unknown>) => string>
 ): string {
   if (dyn == null) return "";
-  if (typeof dyn === "string") return dyn;
+  if (typeof dyn === "string") {
+    if (dyn.startsWith("/")) {
+      const val = resolvePath(dyn, dataModel, scopeData);
+      if (val != null && val !== "") return String(val);
+      return "";
+    }
+    return dyn;
+  }
   if (isPath(dyn)) {
     const val = resolvePath(dyn.path, dataModel, scopeData);
     return val != null ? String(val) : "";

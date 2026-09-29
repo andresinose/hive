@@ -12,22 +12,11 @@ export function A2UIPage() {
   const isConnected = useCanvasStore((s) => s.isConnected);
   const markA2UISeen = useCanvasStore((s) => s.markA2UISeen);
 
-  const sessionId = (paramSessionId && paramSessionId !== "default") ? paramSessionId : currentUser?.id;
+  const sessionId = (paramSessionId && paramSessionId !== "default") ? paramSessionId : (currentUser?.id || "main");
 
   useEffect(() => {
     markA2UISeen();
   }, [markA2UISeen]);
-
-  if (!sessionId) {
-    return (
-      <div className="flex h-[calc(100vh-4rem)] items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-          <p className="text-sm text-muted-foreground">Cargando sesión...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex h-[calc(100vh-4rem)] flex-col bg-background/50 backdrop-blur-sm">

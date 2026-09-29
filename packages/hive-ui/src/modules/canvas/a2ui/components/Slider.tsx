@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { ComponentDef } from "@/types/a2ui";
 import type { RenderCtx } from "../A2UIRenderer";
-import { resolveDynamicNumber } from "../dataBinding";
+import { resolveDynamicNumber, resolveDynamicString } from "../dataBinding";
 import { Slider } from "@/components/ui/slider";
 
 export function A2UISlider({ def, ctx }: { def: ComponentDef; ctx: RenderCtx }) {
@@ -9,7 +9,10 @@ export function A2UISlider({ def, ctx }: { def: ComponentDef; ctx: RenderCtx }) 
   const min = typeof def.min === "number" ? def.min : def.minValue ?? 0;
   const max = typeof def.max === "number" ? def.max : def.maxValue ?? 100;
   const step = typeof def.step === "number" ? def.step : 1;
-  const label = def.label as string | undefined;
+
+  const rawLabel = def.label;
+  const label = typeof rawLabel === "string" ? resolveDynamicString(rawLabel, ctx.dataModel, ctx.scopeData) : undefined;
+
   const initialValue = resolveDynamicNumber(def.value as any, ctx.dataModel, ctx.scopeData);
   const [localValue, setLocalValue] = useState(initialValue);
 
@@ -46,12 +49,12 @@ export function A2UISlider({ def, ctx }: { def: ComponentDef; ctx: RenderCtx }) 
   };
 
   return (
-    <div className="space-y-2" style={def.weight ? { flex: def.weight } : undefined}>
-      {label && <span className="text-xs font-semibold text-white/45 uppercase tracking-wider">{label}</span>}
-      <div className="flex justify-between text-xs text-white/40">
-        <span>{min}</span>
-        <span className="text-white/70 font-mono">{localValue}</span>
-        <span>{max}</span>
+    <div className="space-y-2 py-1.5 w-full" style={def.weight ? { flex: def.weight } : undefined}>
+      <div className="flex items-center justify-between gap-2 text-xs">
+        {label ? <span className="font-medium text-white/80 truncate">{label}</span> : <span />}
+        <span className="font-mono text-xs font-bold text-blue-400 bg-blue-500/15 px-2 py-0.5 rounded border border-blue-500/30">
+          {localValue}
+        </span>
       </div>
       <Slider
         value={[localValue]}
@@ -60,8 +63,12 @@ export function A2UISlider({ def, ctx }: { def: ComponentDef; ctx: RenderCtx }) 
         step={step}
         onValueChange={handleChange}
         onValueCommit={handleCommit}
-        className="w-full"
+        className="w-full py-1 cursor-pointer"
       />
+      <div className="flex justify-between text-[10px] text-white/35 font-mono px-0.5">
+        <span>min: {min}</span>
+        <span>max: {max}</span>
+      </div>
     </div>
   );
 }

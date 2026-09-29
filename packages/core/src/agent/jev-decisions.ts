@@ -9,7 +9,7 @@ import { emitCanvas, type CanvasJevDecision } from "../canvas/emitter"
 
 const log = logger.child("jev-decisions")
 export const JEV_MODEL = "typesafe/jev-1.13"
-const ENDPOINT = "https://openrouter.ai/api/alpha/decisions"
+const ENDPOINT = process.env.LAYA_ENDPOINT || process.env.JEV_ENDPOINT || "http://localhost:8000/api/alpha/decisions"
 const TIMEOUT_MS = 3000
 const COOLDOWN_MS = 60_000
 let failures = 0
@@ -36,9 +36,14 @@ export interface JevResult {
 }
 
 export async function getJevKey(): Promise<string | null> {
+  if (process.env.LAYA_ENDPOINT || process.env.USE_LOCAL_DECISIONS === "true") {
+    return "local-laya-key"
+  }
   const provider = await (await col<ProviderDoc>("providers")).get("openrouter")
-  if (!provider?.doc.enabled || !provider.doc.active) return null
-  return (await loadProviderApiKey("openrouter")) || process.env.OPENROUTER_API_KEY || null
+  if (provider?.doc.enabled && provider.doc.active) {
+    return (await loadProviderApiKey("openrouter")) || process.env.OPENROUTER_API_KEY || null
+  }
+  return process.env.OPENROUTER_API_KEY || null
 }
 
 export interface JevStatus {

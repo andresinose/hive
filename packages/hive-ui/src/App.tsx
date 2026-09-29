@@ -39,7 +39,7 @@ const queryClient = new QueryClient();
 
 function AuthGuard({ children }: { children: ReactNode }) {
   const token = localStorage.getItem("hive-auth-token");
-  const [status, setStatus] = useState<"loading" | "protected" | "open">("loading");
+  const [status, setStatus] = useState<"loading" | "protected" | "open">("open");
 
   useEffect(() => {
     fetch("/api/auth/status")
@@ -48,9 +48,7 @@ function AuthGuard({ children }: { children: ReactNode }) {
       .catch(() => setStatus("open"));
   }, []);
 
-  if (status === "loading") return null;
-  if (status === "open") return <>{children}</>;
-  if (!token) return <Navigate to="/login" replace />;
+  if (status === "protected" && !token) return <Navigate to="/login" replace />;
   return <>{children}</>;
 }
 
