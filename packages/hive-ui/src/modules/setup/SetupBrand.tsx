@@ -29,9 +29,10 @@ export function SetupLogo({ size = 96, glow = true, className }: LogoProps) {
       )}
       <div className="relative flex h-full w-full items-center justify-center rounded-[28%] border border-border/70 bg-card/90 p-[14%] shadow-sm backdrop-blur-sm">
         <img
-          src="/logocolor-dark.png"
+          src="/logo-uti.png"
           alt={SETUP_BRAND.name}
           className="h-full w-full object-contain"
+          onError={(e) => { (e.target as HTMLElement).setAttribute("src", "/logocolor-dark.png"); }}
         />
       </div>
     </div>

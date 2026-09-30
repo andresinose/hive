@@ -265,7 +265,7 @@ export function WebChatPage() {
           onClick={narration.toggle}
           className={`h-8 w-8 rounded-full flex items-center justify-center transition-all ${
             narration.isEnabled
-              ? "bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
+              ? "bg-[#f57021]/20 text-[#f57021] hover:bg-[#f57021]/30"
               : "text-white/40 hover:text-white/70 hover:bg-white/5"
           }`}
           title={narration.isEnabled ? "Desactivar narracion" : "Activar narracion"}

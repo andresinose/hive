@@ -33,13 +33,13 @@ async function checkSystemAudioSupport(): Promise<boolean> {
 
 function SegmentItem({ segment }: { segment: MeetingSegment }) {
   return (
-    <div className="flex gap-3 py-2 px-3 rounded-lg hover:bg-white/[0.03] transition-colors">
+    <div className="flex gap-3 py-2 px-3 rounded-lg hover:bg-white/[0.04] transition-colors">
       {segment.speaker && (
-        <span className="shrink-0 text-xs font-semibold text-amber-400 mt-0.5 leading-5">
+        <span className="shrink-0 text-xs font-semibold text-[#f57021] mt-0.5 leading-5">
           [{segment.speaker}]
         </span>
       )}
-      <span className="text-sm text-zinc-300 leading-relaxed">{segment.text}</span>
+      <span className="text-sm text-[#f5f0fb] leading-relaxed">{segment.text}</span>
     </div>
   );
 }
@@ -308,17 +308,17 @@ export function MeetingPanel() {
   const isIdle = !isRecording && !activeSession?.status.startsWith("stop") && !activeSessionId;
 
   return (
-    <div className="flex h-full flex-col bg-[#111319] text-white">
+    <div className="flex h-full flex-col bg-[#150b24] text-white">
       {/* Header */}
-      <div className="shrink-0 px-5 py-4 border-b border-white/[0.06] bg-[#191b22]/80 backdrop-blur-sm">
+      <div className="shrink-0 px-5 py-4 border-b border-[#3b2259] bg-[#26163d]/90 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20">
-              <Radio className="h-4 w-4 text-amber-400" />
+            <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#f57021]/15 border border-[#f57021]/30">
+              <Radio className="h-4 w-4 text-[#f57021]" />
             </div>
             <div>
               <h1 className="text-sm font-semibold text-white leading-tight">Transcripción de Reuniones</h1>
-              <p className="text-[11px] text-zinc-500 leading-tight">Captura · Transcribe · Informa en tiempo real</p>
+              <p className="text-[11px] text-[#b7a7cc] leading-tight">Captura · Transcribe · Informa en tiempo real</p>
             </div>
           </div>
           {isRecording && (
@@ -337,7 +337,7 @@ export function MeetingPanel() {
         <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
 
           {/* Session controls */}
-          <div className="shrink-0 px-5 py-4 border-b border-white/[0.06] space-y-3">
+          <div className="shrink-0 px-5 py-4 border-b border-[#3b2259] space-y-3">
             {isIdle ? (
               /* Idle: title input + start button */
               <div className="flex flex-col sm:flex-row gap-2">
@@ -346,13 +346,13 @@ export function MeetingPanel() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleStart()}
-                  className="flex-1 bg-white/[0.04] border-white/[0.08] text-white placeholder:text-zinc-600 focus-visible:ring-amber-500/40 focus-visible:border-amber-500/40 rounded-xl h-10"
+                  className="flex-1 bg-[#211336] border-[#3b2259] text-white placeholder:text-[#b7a7cc]/50 focus-visible:ring-[#f57021]/40 focus-visible:border-[#f57021]/60 rounded-xl h-10"
                   disabled={isConnecting}
                 />
                 <Button
                   onClick={handleStart}
                   disabled={isConnecting || !title.trim()}
-                  className="shrink-0 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-black font-semibold rounded-xl h-10 px-5 shadow-lg shadow-amber-900/30 transition-all"
+                  className="shrink-0 bg-[#f57021] hover:bg-[#e05e10] active:bg-[#c8500a] text-white font-bold rounded-xl h-10 px-5 shadow-lg shadow-[#f57021]/20 transition-all"
                 >
                   <Mic className="h-4 w-4 mr-1.5" />
                   {isConnecting ? "Iniciando..." : "Iniciar"}
@@ -503,13 +503,13 @@ export function MeetingPanel() {
         </div>
 
         {/* ── Right panel: session history ── */}
-        <div className="shrink-0 flex flex-col lg:w-64 xl:w-72 border-t lg:border-t-0 lg:border-l border-white/[0.06] bg-[#191b22]/40 max-h-60 lg:max-h-none">
+        <div className="shrink-0 flex flex-col lg:w-64 xl:w-72 border-t lg:border-t-0 lg:border-l border-[#3b2259] bg-[#211336]/60 max-h-60 lg:max-h-none">
           <button
             onClick={() => setShowSessions(!showSessions)}
-            className="flex items-center justify-between px-4 py-3 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider hover:text-zinc-300 border-b border-white/[0.06] transition-colors"
+            className="flex items-center justify-between px-4 py-3 text-[11px] font-semibold text-[#b7a7cc] uppercase tracking-wider hover:text-white border-b border-[#3b2259] transition-colors"
           >
             <span className="flex items-center gap-2">
-              <History className="h-3.5 w-3.5" />
+              <History className="h-3.5 w-3.5 text-[#8a4ed9]" />
               Historial ({sessions.length})
             </span>
             {showSessions ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
@@ -518,8 +518,8 @@ export function MeetingPanel() {
           {showSessions && (
             <div className="flex-1 overflow-y-auto">
               {sessions.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-8 gap-2 text-zinc-600">
-                  <History className="h-6 w-6 opacity-40" />
+                <div className="flex flex-col items-center justify-center py-8 gap-2 text-[#b7a7cc]/60">
+                  <History className="h-6 w-6 opacity-40 text-[#8a4ed9]" />
                   <p className="text-xs">Sin reuniones aún</p>
                 </div>
               ) : (
@@ -528,11 +528,11 @@ export function MeetingPanel() {
                     <button
                       key={s.id}
                       onClick={() => useMeetingStore.getState().fetchSession(s.id)}
-                      className={`w-full text-left px-4 py-3 hover:bg-white/[0.04] transition-colors border-b border-white/[0.04] ${
-                        s.id === activeSessionId ? "bg-amber-500/[0.06]" : ""
+                      className={`w-full text-left px-4 py-3 hover:bg-white/[0.04] transition-colors border-b border-[#3b2259]/50 ${
+                        s.id === activeSessionId ? "bg-[#f57021]/15" : ""
                       }`}
                     >
-                      <p className="text-xs font-medium text-zinc-200 truncate leading-snug">{s.title}</p>
+                      <p className="text-xs font-medium text-white truncate leading-snug">{s.title}</p>
                       <div className="flex items-center gap-1.5 mt-1">
                         <Badge
                           variant="outline"
@@ -540,14 +540,14 @@ export function MeetingPanel() {
                             s.status === "active"
                               ? "bg-emerald-500/15 text-emerald-400"
                               : s.status === "report_ready"
-                              ? "bg-blue-500/15 text-blue-400"
-                              : "bg-white/[0.05] text-zinc-500"
+                              ? "bg-[#8a4ed9]/20 text-[#8a4ed9]"
+                              : "bg-white/[0.05] text-[#b7a7cc]"
                           }`}
                         >
                           {s.status === "active" ? "activa" : s.status === "report_ready" ? "con reporte" : "detenida"}
                         </Badge>
                         {s.segment_count !== undefined && s.segment_count > 0 && (
-                          <span className="text-[10px] text-zinc-600">{s.segment_count} seg</span>
+                          <span className="text-[10px] text-[#b7a7cc]">{s.segment_count} seg</span>
                         )}
                       </div>
                     </button>

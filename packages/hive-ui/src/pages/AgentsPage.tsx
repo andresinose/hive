@@ -64,18 +64,18 @@ export function AgentsPage() {
   return (
     <div className="hive-page min-h-full">
       <div className="mx-auto w-full max-w-[1480px] px-2 py-4 sm:px-4 lg:px-6 lg:py-6">
-        <header className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0b0e14]/80 px-5 py-5 shadow-xl shadow-black/10 sm:px-6">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_0%,rgba(59,130,246,0.10),transparent_28%),radial-gradient(circle_at_8%_100%,rgba(245,158,11,0.08),transparent_32%)]" />
+        <header className="relative overflow-hidden rounded-2xl border border-[#3b2259] bg-[#26163d]/90 px-5 py-5 shadow-xl shadow-black/20 sm:px-6">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_0%,rgba(138,78,217,0.18),transparent_35%),radial-gradient(circle_at_8%_100%,rgba(245,112,33,0.15),transparent_38%)]" />
           <div className="relative flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <div className="mb-2.5 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.24em] text-blue-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
+              <div className="mb-2.5 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.24em] text-[#f57021]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#f57021] shadow-[0_0_8px_rgba(245,112,33,0.8)]" />
                 Nexo central · configuración de agentes
               </div>
               <h1 className="text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
-                Tu colmena <span className="text-amber-400">inteligente</span>
+                Tu colmena <span className="text-[#f57021]">inteligente</span>
               </h1>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-white/45">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#b7a7cc]">
                 Selecciona un nodo para revisar su configuración, ajustar su propósito o entrar a su espacio operativo.
               </p>
             </div>
@@ -83,22 +83,22 @@ export function AgentsPage() {
             <div className="flex flex-col items-start gap-3 lg:items-end">
               <div className="hidden items-center gap-4 xl:flex">
                 <HeaderMetric value={activeCount} label="activos" color="text-emerald-400" />
-                <HeaderMetric value={workerCount} label="especialistas" color="text-blue-400" />
+                <HeaderMetric value={workerCount} label="especialistas" color="text-purple-300" />
               </div>
               <div className="flex items-center gap-2.5">
                 <button
                   type="button"
                   onClick={() => fetchAgents()}
                   disabled={isLoading}
-                  className="flex h-10 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3.5 text-xs font-semibold text-white/60 transition-colors hover:border-white/20 hover:bg-white/[0.07] hover:text-white disabled:opacity-50"
+                  className="flex h-10 items-center gap-2 rounded-lg border border-[#3b2259] bg-[#211336] px-3.5 text-xs font-semibold text-white/80 transition-colors hover:border-[#8a4ed9] hover:bg-[#26163d] hover:text-white disabled:opacity-50"
                 >
-                  <RefreshCw className={`h-3.5 w-3.5 text-blue-400 ${isLoading ? "animate-spin" : ""}`} />
+                  <RefreshCw className={`h-3.5 w-3.5 text-[#f57021] ${isLoading ? "animate-spin" : ""}`} />
                   Sincronizar
                 </button>
                 <button
                   type="button"
                   onClick={handleCreate}
-                  className="flex h-10 items-center gap-2 rounded-lg border border-amber-300/40 bg-amber-400 px-4 text-xs font-bold text-[#181108] shadow-[0_0_20px_rgba(245,158,11,0.16)] transition hover:bg-amber-300"
+                  className="flex h-10 items-center gap-2 rounded-lg border border-[#f57021]/50 bg-[#f57021] px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(245,112,33,0.3)] transition hover:bg-[#e05e10]"
                 >
                   <Plus className="h-3.5 w-3.5" />
                   Desplegar nodo
@@ -155,31 +155,31 @@ export function AgentsPage() {
               onOpen={(agent) => navigate(`/agents/${agent.id}`)}
             />
 
-            <section className="min-w-0 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#080b11]/75 shadow-2xl shadow-black/15">
-              <div className="flex flex-col gap-3 border-b border-white/[0.07] px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+            <section className="min-w-0 overflow-hidden rounded-2xl border border-[#3b2259] bg-[#26163d]/85 shadow-2xl shadow-black/20">
+              <div className="flex flex-col gap-3 border-b border-[#3b2259]/70 px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:px-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-500/10">
-                    <Network className="h-4 w-4 text-blue-400" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#8a4ed9]/30 bg-[#8a4ed9]/15">
+                    <Network className="h-4 w-4 text-[#8a4ed9]" />
                   </div>
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-[0.14em] text-white/80">Mapa de la colmena</h2>
-                    <p className="mt-0.5 text-[10px] text-white/30">Haz clic en un hexágono para inspeccionarlo</p>
+                    <h2 className="text-xs font-bold uppercase tracking-[0.14em] text-white/90">Mapa de la colmena</h2>
+                    <p className="mt-0.5 text-[10px] text-[#b7a7cc]">Haz clic en un hexágono para inspeccionarlo</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-wider text-white/30">
+                <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-wider text-[#b7a7cc]">
                   <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#f57021]" />
                     Coordinación
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#8a4ed9]" />
                     Especialistas
                   </span>
                 </div>
               </div>
 
               <div className="relative min-h-[560px] overflow-hidden">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.045),transparent_38%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,112,33,0.06),transparent_40%)]" />
                 <AgentList
                   agents={agents}
                   onEdit={handleEdit}
@@ -197,10 +197,10 @@ export function AgentsPage() {
           <button
             type="button"
             aria-label="Cerrar configuración"
-            className="absolute inset-0 cursor-default bg-black/75 backdrop-blur-sm"
+            className="absolute inset-0 cursor-default bg-black/80 backdrop-blur-sm"
             onClick={closeForm}
           />
-          <div className="relative max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-white/10 bg-[#09090b] shadow-2xl">
+          <div className="relative max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-[#3b2259] bg-[#150b24] shadow-2xl">
             <AgentCreateForm initialData={editingAgent} onSuccess={closeForm} onCancel={closeForm} />
           </div>
         </div>
@@ -213,7 +213,7 @@ function HeaderMetric({ value, label, color }: { value: number; label: string; c
   return (
     <div className="flex items-baseline gap-1.5">
       <span className={`text-lg font-black tabular-nums ${color}`}>{value}</span>
-      <span className="text-[9px] font-bold uppercase tracking-wider text-white/25">{label}</span>
+      <span className="text-[9px] font-bold uppercase tracking-wider text-[#b7a7cc]">{label}</span>
     </div>
   );
 }
@@ -244,42 +244,42 @@ function AgentInspector({
   const skills = getAgentSkillIds(agent).length;
 
   return (
-    <aside className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0b0e14]/90 lg:sticky lg:top-4">
-      <div className={`h-1 w-full ${isCoordinator ? "bg-amber-400" : "bg-blue-500"}`} />
+    <aside className="overflow-hidden rounded-2xl border border-[#3b2259] bg-[#26163d]/95 shadow-xl lg:sticky lg:top-4">
+      <div className={`h-1 w-full ${isCoordinator ? "bg-[#f57021]" : "bg-[#8a4ed9]"}`} />
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">
           <div
             className={`flex h-11 w-11 items-center justify-center rounded-xl border ${
               isCoordinator
-                ? "border-amber-500/20 bg-amber-500/10 text-amber-400"
-                : "border-blue-500/20 bg-blue-500/10 text-blue-400"
+                ? "border-[#f57021]/30 bg-[#f57021]/15 text-[#f57021]"
+                : "border-[#8a4ed9]/30 bg-[#8a4ed9]/15 text-[#8a4ed9]"
             }`}
           >
             {isCoordinator ? <Shield className="h-5 w-5" /> : <BrainCircuit className="h-5 w-5" />}
           </div>
           <span
-            className={`flex items-center gap-1.5 rounded-full border px-2 py-1 text-[9px] font-bold uppercase tracking-wider ${
+            className={`flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider ${
               agent.status === "archived"
-                ? "border-amber-500/20 bg-amber-500/10 text-amber-400"
+                ? "border-[#f57021]/30 bg-[#f57021]/15 text-[#f57021]"
                 : agent.enabled
-                ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                : "border-white/10 bg-white/5 text-white/35"
+                ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-400"
+                : "border-white/10 bg-white/5 text-white/40"
             }`}
           >
             <span
               className={`h-1.5 w-1.5 rounded-full ${
-                agent.status === "archived" ? "bg-amber-400" : agent.enabled ? "bg-emerald-400" : "bg-white/30"
+                agent.status === "archived" ? "bg-[#f57021]" : agent.enabled ? "bg-emerald-400" : "bg-white/30"
               }`}
             />
             {agent.status === "archived" ? "Archivado" : agent.enabled ? "Activo" : "Inactivo"}
           </span>
         </div>
 
-        <p className={`mt-4 text-[9px] font-bold uppercase tracking-[0.2em] ${isCoordinator ? "text-amber-400" : "text-blue-400"}`}>
+        <p className={`mt-4 text-[9px] font-bold uppercase tracking-[0.2em] ${isCoordinator ? "text-[#f57021]" : "text-[#8a4ed9]"}`}>
           {isCoordinator ? "Nodo coordinador" : "Nodo especialista"}
         </p>
         <h2 className="mt-1.5 text-xl font-black leading-tight tracking-tight text-white">{agent.name}</h2>
-        <p className="mt-2 line-clamp-3 min-h-[54px] text-xs leading-[18px] text-white/40">
+        <p className="mt-2 line-clamp-3 min-h-[54px] text-xs leading-[18px] text-[#b7a7cc]">
           {agent.description || "Este agente todavía no tiene una descripción de propósito."}
         </p>
 
@@ -291,19 +291,15 @@ function AgentInspector({
 
         <div className="mt-4 grid grid-cols-3 gap-1.5">
           <InspectorStat icon={Wrench} value={tools} label="Tools" color="text-emerald-400" />
-          <InspectorStat icon={Zap} value={skills} label="Skills" color="text-amber-400" />
-          <InspectorStat icon={Activity} value={agent.maxIterations || 10} label="Iters" color="text-violet-400" />
+          <InspectorStat icon={Zap} value={skills} label="Skills" color="text-[#f57021]" />
+          <InspectorStat icon={Activity} value={agent.maxIterations || 10} label="Iters" color="text-[#8a4ed9]" />
         </div>
 
         <div className="mt-5 grid gap-2">
           <button
             type="button"
             onClick={() => onEdit(agent)}
-            className={`flex h-10 items-center justify-center gap-2 rounded-lg text-xs font-bold transition-colors ${
-              isCoordinator
-                ? "bg-amber-400 text-[#181108] hover:bg-amber-300"
-                : "bg-blue-600 text-white hover:bg-blue-500"
-            }`}
+            className="flex h-10 items-center justify-center gap-2 rounded-lg bg-[#f57021] text-xs font-bold text-white shadow-[0_0_15px_rgba(245,112,33,0.3)] transition-all hover:bg-[#e05e10]"
           >
             <Pencil className="h-3.5 w-3.5" />
             Configurar nodo
@@ -311,7 +307,7 @@ function AgentInspector({
           <button
             type="button"
             onClick={() => onOpen(agent)}
-            className="flex h-10 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] text-xs font-semibold text-white/60 transition-colors hover:bg-white/[0.07] hover:text-white"
+            className="flex h-10 items-center justify-center gap-2 rounded-lg border border-[#3b2259] bg-[#211336] text-xs font-semibold text-white/80 transition-colors hover:border-[#8a4ed9] hover:bg-[#26163d] hover:text-white"
           >
             Abrir perfil
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -319,14 +315,14 @@ function AgentInspector({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-px border-t border-white/[0.07] bg-white/[0.07]">
-        <div className="bg-[#0b0e14] px-4 py-3">
+      <div className="grid grid-cols-2 gap-px border-t border-[#3b2259] bg-[#3b2259]">
+        <div className="bg-[#150b24] px-4 py-3">
           <p className="text-lg font-black tabular-nums text-white">{totalAgents}</p>
-          <p className="text-[8px] font-bold uppercase tracking-wider text-white/25">Nodos totales</p>
+          <p className="text-[8px] font-bold uppercase tracking-wider text-[#b7a7cc]">Nodos totales</p>
         </div>
-        <div className="bg-[#0b0e14] px-4 py-3">
+        <div className="bg-[#150b24] px-4 py-3">
           <p className="text-lg font-black tabular-nums text-emerald-400">{activeCount}</p>
-          <p className="text-[8px] font-bold uppercase tracking-wider text-white/25">En operación</p>
+          <p className="text-[8px] font-bold uppercase tracking-wider text-[#b7a7cc]">En operación</p>
         </div>
       </div>
     </aside>
@@ -345,11 +341,11 @@ function InspectorRow({
   mono?: boolean;
 }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-lg border border-white/[0.06] bg-white/[0.025] px-3 py-2.5">
-      <RowIcon className="h-3.5 w-3.5 shrink-0 text-white/30" />
+    <div className="flex items-center gap-2.5 rounded-lg border border-[#3b2259]/80 bg-[#211336]/80 px-3 py-2.5">
+      <RowIcon className="h-3.5 w-3.5 shrink-0 text-[#8a4ed9]" />
       <div className="min-w-0">
-        <p className="text-[8px] font-bold uppercase tracking-wider text-white/25">{label}</p>
-        <p className={`mt-0.5 truncate text-[11px] text-white/65 ${mono ? "font-mono" : "font-medium"}`} title={value}>
+        <p className="text-[8px] font-bold uppercase tracking-wider text-[#b7a7cc]">{label}</p>
+        <p className={`mt-0.5 truncate text-[11px] text-white/90 ${mono ? "font-mono" : "font-medium"}`} title={value}>
           {value}
         </p>
       </div>
@@ -369,10 +365,10 @@ function InspectorStat({
   color: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-black/20 px-2 py-2.5 text-center">
+    <div className="rounded-lg border border-[#3b2259]/80 bg-[#150b24]/90 px-2 py-2.5 text-center">
       <StatIcon className={`mx-auto h-3.5 w-3.5 ${color}`} />
-      <p className="mt-1 text-sm font-black tabular-nums text-white/80">{value}</p>
-      <p className="text-[7px] font-bold uppercase tracking-wider text-white/25">{label}</p>
+      <p className="mt-1 text-sm font-black tabular-nums text-white/90">{value}</p>
+      <p className="text-[7px] font-bold uppercase tracking-wider text-[#b7a7cc]">{label}</p>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   Area,
   XAxis,
   YAxis,
+  Tooltip,
   ResponsiveContainer,
 } from "recharts";
 
@@ -168,6 +169,17 @@ export function SystemMonitor() {
                 tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 9 }} interval="preserveStartEnd" />
               <YAxis axisLine={false} tickLine={false}
                 tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 9 }} />
+              <Tooltip
+                cursor={{ stroke: "rgba(138, 78, 217, 0.4)", strokeWidth: 1, strokeDasharray: "3 3" }}
+                contentStyle={{
+                  backgroundColor: "#1b0f30",
+                  border: "1px solid #3b2259",
+                  borderRadius: "8px",
+                  color: "#ffffff"
+                }}
+                itemStyle={{ color: "#e2e8f0" }}
+                labelStyle={{ color: "#ffffff", fontWeight: 600 }}
+              />
               <Area type="monotone" dataKey="msgs" stroke="#22c55e" strokeWidth={2}
                 fillOpacity={1} fill="url(#gMsgs)" name="Mensajes" />
               <Area type="monotone" dataKey="rss" stroke="#8b5cf6" strokeWidth={2}

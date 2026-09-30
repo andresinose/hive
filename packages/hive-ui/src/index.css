@@ -128,132 +128,132 @@
 
 @layer base {
   :root {
-    /* ── Base palette (warm light theme - not actively used) ── */
-    --background: 40 10% 96%;
-    --foreground: 30 10% 10%;
+    /* ── Base palette (Light theme - Reference design: Purple & Orange) ── */
+    --background: 264 43% 96%;        /* #f4f0f9 - soft purple bg */
+    --foreground: 268 54% 18%;        /* #2c1547 - brand purple text */
 
-    --card: 40 10% 93%;
-    --card-foreground: 30 10% 10%;
+    --card: 0 0% 100%;                /* #ffffff - surface */
+    --card-foreground: 268 54% 18%;   /* #2c1547 */
 
-    --popover: 40 10% 96%;
-    --popover-foreground: 30 10% 10%;
+    --popover: 0 0% 100%;             /* #ffffff */
+    --popover-foreground: 268 54% 18%;
 
-    --primary: 38 92% 50%;
-    --primary-foreground: 30 10% 5%;
+    --primary: 22 92% 55%;            /* #f57021 - highlight orange */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 35 20% 88%;
-    --secondary-foreground: 30 10% 15%;
+    --secondary: 264 40% 92%;         /* #eae3f4 - bg soft */
+    --secondary-foreground: 268 54% 18%;
 
-    --muted: 35 10% 90%;
-    --muted-foreground: 30 8% 45%;
+    --muted: 264 40% 92%;             /* #eae3f4 */
+    --muted-foreground: 267 20% 44%;  /* #6e5987 - text muted */
 
-    --accent: 30 80% 55%;
-    --accent-foreground: 30 10% 5%;
+    --accent: 22 92% 55%;             /* #f57021 */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 35 12% 82%;
-    --input: 35 12% 82%;
-    --ring: 38 92% 50%;
+    --border: 267 35% 89%;            /* #e2d9ee - border */
+    --input: 267 35% 89%;
+    --ring: 22 92% 55%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 35 10% 93%;
-    --sidebar-foreground: 30 8% 30%;
-    --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 30 10% 5%;
-    --sidebar-accent: 35 15% 88%;
-    --sidebar-accent-foreground: 30 10% 10%;
-    --sidebar-border: 35 12% 82%;
-    --sidebar-ring: 38 92% 50%;
+    --sidebar-background: 264 40% 92%; /* #eae3f4 */
+    --sidebar-foreground: 268 54% 18%;
+    --sidebar-primary: 22 92% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 267 35% 89%;
+    --sidebar-accent-foreground: 268 54% 18%;
+    --sidebar-border: 267 35% 89%;
+    --sidebar-ring: 22 92% 55%;
 
     /* Custom Hive tokens */
-    --hive-glow: 38 92% 50%;
-    --hive-surface: 220 15% 13%;
-    --hive-surface-foreground: 40 10% 90%;
+    --hive-glow: 22 92% 55%;
+    --hive-surface: 0 0% 100%;
+    --hive-surface-foreground: 268 54% 18%;
     --hive-connected: 142 71% 45%;
     --hive-disconnected: 0 72% 51%;
-    --hive-thinking: 38 92% 50%;
+    --hive-thinking: 22 92% 55%;
 
-    /* ── Semantic accent colors (used across all pages) ── */
-    --hive-blue: 217 91% 60%;       /* #3b82f6 — action blue, workers, active states */
-    --hive-blue-dark: 221 83% 53%;   /* #2563eb — buttons, primary actions */
-    --hive-purple: 271 81% 66%;      /* #a855f7 — coordinators, thinking */
-    --hive-purple-dark: 263 70% 50%; /* #9333ea — deep purple accents */
-    --hive-green: 142 71% 45%;       /* #22c55e — success, connected */
-    --hive-emerald: 160 84% 39%;     /* #10b981 — workspace, tools */
-    --hive-red: 0 84% 60%;           /* #ef4444 — errors, disconnected */
-    --hive-red-dark: 0 72% 41%;      /* #b91c1c — destructive */
-    --hive-cyan: 187 95% 42%;        /* #06b6d4 — tool calls */
-    --hive-teal: 173 80% 40%;        /* #14b8a6 — MCP servers */
-    --hive-amber: 38 92% 50%;        /* #f59e0b — brand, thinking, skills */
-    --hive-orange: 25 80% 55%;       /* #e07a2f — warm accent */
+    /* ── Semantic accent colors ── */
+    --hive-blue: 266 65% 58%;         /* #8a4ed9 - brand purple */
+    --hive-blue-dark: 268 54% 18%;    /* #2c1547 */
+    --hive-purple: 266 65% 58%;       /* #8a4ed9 */
+    --hive-purple-dark: 268 54% 18%;  /* #2c1547 */
+    --hive-green: 142 71% 45%;
+    --hive-emerald: 160 84% 39%;
+    --hive-red: 0 84% 60%;
+    --hive-red-dark: 0 72% 41%;
+    --hive-cyan: 187 95% 42%;
+    --hive-teal: 173 80% 40%;
+    --hive-amber: 22 92% 55%;         /* #f57021 - highlight orange */
+    --hive-orange: 22 92% 55%;        /* #f57021 */
   }
 
   .dark {
-    /* ── Core shadcn/ui tokens ── */
-    --background: 220 15% 8%;
-    --foreground: 40 10% 90%;
+    /* ── Core shadcn/ui tokens (Reference Dark Theme: #150b24 bg, #26163d surface, #8a4ed9 brand, #f57021 highlight) ── */
+    --background: 267 53% 9%;         /* #150b24 */
+    --foreground: 267 64% 96%;        /* #f5f0fb */
 
-    --card: 220 15% 11%;
-    --card-foreground: 40 10% 90%;
+    --card: 267 47% 16%;              /* #26163d */
+    --card-foreground: 267 64% 96%;   /* #f5f0fb */
 
-    --popover: 220 15% 11%;
-    --popover-foreground: 40 10% 90%;
+    --popover: 267 47% 16%;           /* #26163d */
+    --popover-foreground: 267 64% 96%;/* #f5f0fb */
 
-    --primary: 38 92% 50%;
-    --primary-foreground: 30 10% 5%;
+    --primary: 22 92% 55%;            /* #f57021 - highlight orange */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 12% 16%;
-    --secondary-foreground: 40 10% 85%;
+    --secondary: 267 48% 14%;         /* #211336 */
+    --secondary-foreground: 267 27% 73%; /* #b7a7cc */
 
-    --muted: 220 12% 16%;
-    --muted-foreground: 220 8% 55%;
+    --muted: 267 48% 14%;             /* #211336 */
+    --muted-foreground: 267 27% 73%;  /* #b7a7cc */
 
-    --accent: 25 80% 55%;
-    --accent-foreground: 30 10% 5%;
+    --accent: 22 92% 55%;             /* #f57021 */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 41%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 12% 18%;
-    --input: 220 12% 18%;
-    --ring: 38 92% 50%;
+    --border: 267 44% 24%;            /* #3b2259 */
+    --input: 267 44% 24%;             /* #3b2259 */
+    --ring: 22 92% 55%;               /* #f57021 */
 
     --radius: 0.5rem;
 
     /* ── Sidebar tokens ── */
-    --sidebar-background: 220 15% 10%;
-    --sidebar-foreground: 40 10% 80%;
-    --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 30 10% 5%;
-    --sidebar-accent: 220 12% 14%;
-    --sidebar-accent-foreground: 40 10% 85%;
-    --sidebar-border: 220 12% 16%;
-    --sidebar-ring: 38 92% 50%;
+    --sidebar-background: 267 53% 9%; /* #150b24 */
+    --sidebar-foreground: 267 64% 96%;/* #f5f0fb */
+    --sidebar-primary: 22 92% 55%;     /* #f57021 */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 267 47% 16%;     /* #26163d */
+    --sidebar-accent-foreground: 267 64% 96%;
+    --sidebar-border: 267 44% 24%;     /* #3b2259 */
+    --sidebar-ring: 22 92% 55%;
 
     /* ── Custom Hive surface tokens ── */
-    --hive-surface: 220 15% 13%;
-    --hive-surface-foreground: 40 10% 90%;
+    --hive-surface: 267 47% 16%;      /* #26163d */
+    --hive-surface-foreground: 267 64% 96%;
     --hive-connected: 142 71% 45%;
     --hive-disconnected: 0 72% 41%;
-    --hive-thinking: 38 92% 50%;
-    --hive-glow: 38 92% 50%;
+    --hive-thinking: 22 92% 55%;
+    --hive-glow: 22 92% 55%;
 
     /* ── Semantic accent colors (dark mode) ── */
-    --hive-blue: 217 91% 60%;       /* #3b82f6 */
-    --hive-blue-dark: 221 83% 53%;   /* #2563eb */
-    --hive-purple: 271 81% 66%;      /* #a855f7 */
-    --hive-purple-dark: 263 70% 50%; /* #9333ea */
+    --hive-blue: 266 65% 58%;         /* #8a4ed9 - brand purple */
+    --hive-blue-dark: 268 54% 25%;    /* deep purple */
+    --hive-purple: 266 65% 58%;       /* #8a4ed9 */
+    --hive-purple-dark: 268 54% 18%;  /* #2c1547 */
     --hive-green: 142 71% 45%;       /* #22c55e */
     --hive-emerald: 160 84% 39%;     /* #10b981 */
     --hive-red: 0 84% 60%;           /* #ef4444 */
     --hive-red-dark: 0 72% 41%;      /* #b91c1c */
     --hive-cyan: 187 95% 42%;        /* #06b6d4 */
     --hive-teal: 173 80% 40%;        /* #14b8a6 */
-    --hive-amber: 38 92% 50%;        /* #f59e0b */
-    --hive-orange: 25 80% 55%;       /* #e07a2f */
+    --hive-amber: 22 92% 55%;         /* #f57021 - highlight orange */
+    --hive-orange: 22 92% 55%;        /* #f57021 */
 
     /* ── Surface & glass tokens ── */
     --hive-glass: 0 0% 100% / 0.03;            /* default glass transparency */
@@ -261,7 +261,7 @@
     --hive-border-subtle: 0 0% 100% / 0.05;    /* subtle dividers */
     --hive-border-base: 0 0% 100% / 0.10;      /* standard borders */
     --hive-border-strong: 0 0% 100% / 0.20;    /* active/focus borders */
-    --hive-text-muted: 40 10% 90% / 0.40;      /* muted text */
+    --hive-text-muted: 267 27% 73% / 0.60;     /* muted text */
     --hive-text-placeholder: 0 0% 100% / 0.20; /* placeholder text */
   }
 }

@@ -129,8 +129,8 @@ export function DashboardPage() {
         <div className="relative z-10 flex items-center gap-4">
           <div className="hidden h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] p-2 shadow-[0_0_30px_rgba(59,130,246,0.12)] sm:flex">
             <img
-              src="/logocolor-dark.png"
-              alt="Logo de Hive"
+              src="/logo-uti.png"
+              alt="Logo UTI"
               className="h-full w-full object-contain"
             />
           </div>
@@ -238,8 +238,10 @@ export function DashboardPage() {
                       allowDecimals={false}
                     />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#09090b', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', color: '#fff' }}
-                      itemStyle={{ color: '#3b82f6' }}
+                      cursor={{ stroke: "rgba(138, 78, 217, 0.4)", strokeWidth: 1, strokeDasharray: "3 3" }}
+                      contentStyle={{ backgroundColor: "#1b0f30", borderRadius: "12px", border: "1px solid #3b2259", color: "#fff" }}
+                      itemStyle={{ color: "#f57021" }}
+                      labelStyle={{ color: "#ffffff", fontWeight: 600 }}
                       formatter={(v: number) => [v, "Mensajes"]}
                     />
                     <Area
@@ -278,7 +280,12 @@ export function DashboardPage() {
                       tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontWeight: 'bold' }}
                       width={70}
                     />
-                    <Tooltip cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+                    <Tooltip
+                      cursor={{ fill: "rgba(138, 78, 217, 0.15)" }}
+                      contentStyle={{ backgroundColor: "#1b0f30", borderRadius: "8px", border: "1px solid #3b2259", color: "#fff" }}
+                      itemStyle={{ color: "#e2e8f0" }}
+                      labelStyle={{ color: "#ffffff", fontWeight: 600 }}
+                    />
                     <Bar dataKey="value" radius={[0, 8, 8, 0]} barSize={16}>
                       {agentStatusData.map((entry) => (
                         <Cell key={entry.name} fill={entry.color} />

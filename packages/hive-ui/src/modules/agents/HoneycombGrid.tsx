@@ -299,15 +299,15 @@ export function HoneycombGrid({ agents, onEdit, selectedId, onSelect }: Honeycom
 
           const borderColor = agent.enabled
             ? isSelected
-              ? "rgba(245,158,11,0.95)"
+              ? "rgba(245,112,33,0.95)"
               : isHov
-                ? "rgba(96,165,250,0.9)"
-                : "rgba(59,130,246,0.45)"
+                ? "rgba(138,78,217,0.9)"
+                : "rgba(138,78,217,0.45)"
             : "rgba(255,255,255,0.08)";
 
           const innerBg = agent.enabled
-            ? "linear-gradient(145deg, #050d1c 0%, #020912 60%, #040a18 100%)"
-            : "#0a0a0b";
+            ? "linear-gradient(145deg, #211336 0%, #150b24 60%, #26163d 100%)"
+            : "#150b24";
 
           return (
             <div
@@ -319,7 +319,7 @@ export function HoneycombGrid({ agents, onEdit, selectedId, onSelect }: Honeycom
             >
               <button
                 type="button"
-                className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300/70"
+                className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f57021]/70"
                 style={{ clipPath: HEX_CLIP }}
                 onClick={() => onSelect?.(agent.id)}
                 aria-label={`Seleccionar ${agent.name}`}
@@ -331,7 +331,7 @@ export function HoneycombGrid({ agents, onEdit, selectedId, onSelect }: Honeycom
                   className="absolute inset-[-5px] transition-opacity duration-300 blur-[8px]"
                   style={{
                     clipPath: HEX_CLIP,
-                    background: isSelected ? "rgba(245,158,11,0.45)" : "rgba(59,130,246,0.35)",
+                    background: isSelected ? "rgba(245,112,33,0.45)" : "rgba(138,78,217,0.35)",
                     opacity: isSelected ? 0.9 : isHov ? 0.8 : 0.2,
                   }}
                 />
@@ -355,16 +355,16 @@ export function HoneycombGrid({ agents, onEdit, selectedId, onSelect }: Honeycom
                     <div className="relative">
                       <Cpu
                         className="h-5 w-5 transition-colors duration-300"
-                      style={{ color: isSelected ? "#fbbf24" : agent.enabled ? "#60a5fa" : "#374151" }}
+                        style={{ color: isSelected ? "#f57021" : agent.enabled ? "#c084fc" : "#4b5563" }}
                       />
                       <div
-                        className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full border border-[#020912]"
+                        className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full border border-[#150b24]"
                         style={{ backgroundColor: sc.dot, boxShadow: sc.glow }}
                       />
                     </div>
                     <span
                       className="text-[8px] font-bold tracking-wide text-center leading-tight uppercase line-clamp-2 transition-colors duration-300"
-                      style={{ color: isSelected ? "#fde68a" : agent.enabled ? "#93c5fd" : "#374151" }}
+                      style={{ color: isSelected ? "#f57021" : agent.enabled ? "#e9d5ff" : "#4b5563" }}
                     >
                       {agent.name}
                     </span>

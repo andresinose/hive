@@ -296,11 +296,16 @@ export function UsageStatsPanel() {
                         width={70}
                       />
                       <Tooltip
+                        cursor={{ fill: "rgba(138, 78, 217, 0.15)" }}
                         contentStyle={{
-                          backgroundColor: "hsl(var(--card))",
-                          border: "1px solid hsl(var(--border))",
-                          borderRadius: "8px"
+                          backgroundColor: "#1b0f30",
+                          border: "1px solid #3b2259",
+                          borderRadius: "8px",
+                          color: "#ffffff",
+                          boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.5)"
                         }}
+                        itemStyle={{ color: "#e2e8f0" }}
+                        labelStyle={{ color: "#ffffff", fontWeight: 600 }}
                         formatter={(value: number, name: string) => [
                           name === "cost" ? formatCurrency(value) : formatNumber(value),
                           name === "cost" ? "Costo" : "Tokens"
@@ -339,11 +344,16 @@ export function UsageStatsPanel() {
                         tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
                       />
                       <Tooltip
+                        cursor={{ fill: "rgba(138, 78, 217, 0.15)" }}
                         contentStyle={{
-                          backgroundColor: "hsl(var(--card))",
-                          border: "1px solid hsl(var(--border))",
-                          borderRadius: "8px"
+                          backgroundColor: "#1b0f30",
+                          border: "1px solid #3b2259",
+                          borderRadius: "8px",
+                          color: "#ffffff",
+                          boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.5)"
                         }}
+                        itemStyle={{ color: "#e2e8f0" }}
+                        labelStyle={{ color: "#ffffff", fontWeight: 600 }}
                         formatter={(value: number) => formatCurrency(value)}
                         labelFormatter={(label) => {
                           const model = modelData.find(m => m.name === label);

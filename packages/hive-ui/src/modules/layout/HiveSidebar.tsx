@@ -108,12 +108,12 @@ export function AppSidebar() {
                       to={item.url}
                       end={item.url === "/"}
                       className="hive-sidebar-item group/item text-white/50 hover:text-white"
-                      activeClassName="hive-sidebar-item--active text-blue-400 font-bold"
+                      activeClassName="hive-sidebar-item--active text-[#f57021] font-bold bg-[#f57021]/10"
                     >
                       <Icon icon={item.icon as any} className="h-4 w-4 transition-transform group-hover/item:scale-110" />
                       <span className="flex-1">{item.title}</span>
                       {item.url === "/a2ui" && unseenA2UICount > 0 && (
-                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-blue-500 px-1 text-[9px] font-bold text-white">
+                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f57021] px-1 text-[9px] font-bold text-white">
                           {unseenA2UICount}
                         </span>
                       )}
@@ -131,7 +131,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       className="hive-sidebar-item group/item text-white/50 hover:text-white"
-                      activeClassName="hive-sidebar-item--active text-blue-400 font-bold"
+                      activeClassName="hive-sidebar-item--active text-[#f57021] font-bold bg-[#f57021]/10"
                     >
                       <Icon icon={item.icon as any} className="h-4 w-4 transition-transform group-hover/item:scale-110" />
                       <span>{item.title}</span>
@@ -151,7 +151,7 @@ export function AppSidebar() {
                     <NavLink
                       to="/settings/herramientas"
                       className="hive-sidebar-item group/item text-white/50 hover:text-white"
-                      activeClassName="hive-sidebar-item--active text-blue-400 font-bold"
+                      activeClassName="hive-sidebar-item--active text-[#f57021] font-bold bg-[#f57021]/10"
                     >
                       <Icon icon={SlidersHorizontal as any} className="h-4 w-4 transition-transform group-hover/item:scale-110" />
                       <span>Ajustes</span>
@@ -171,7 +171,7 @@ export function AppSidebar() {
                                 <NavLink
                                   to={`/settings/${item.id}`}
                                   className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-all text-xs"
-                                  activeClassName="text-blue-400 bg-blue-500/5 font-semibold"
+                                  activeClassName="text-[#f57021] bg-[#f57021]/10 font-semibold"
                                 >
                                   <Icon icon={item.icon as any} className="h-3.5 w-3.5" />
                                   <span>{item.label}</span>
